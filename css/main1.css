@@ -1,0 +1,1333 @@
+/* ==========================================================================
+   1. 기본 초기화
+   ========================================================================== */
+
+/* 모든 요소의 크기 계산 방식을 border-box로 통일하고 기본 여백을 제거합니다. */
+/* * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+} */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+
+/* 문서 전체의 최소 너비를 지정합니다. */
+html {
+    width: 100%;
+    min-width: 320px;
+}
+
+/* 페이지 전체 기본 글꼴, 글자색, 배경색과 바깥 여백을 설정합니다. */
+body {
+    width: 100%;
+    min-width: 320px;
+    padding: 20px;
+    overflow-x: hidden;
+    background-color: #FEFAF5;
+    color: #333;
+    font-family: sans-serif;
+    line-height: 1.6;
+}
+
+/* 이미지가 부모 영역보다 커지지 않도록 제한합니다. */
+img {
+    max-width: 100%;
+}
+
+/* 목록 앞의 기본 점을 제거합니다. */
+ul {
+    list-style: none;
+}
+
+/* 링크가 부모의 글자색을 기본적으로 이어받도록 설정합니다. */
+a {
+    color: inherit;
+}
+
+
+/* ==========================================================================
+   2. 헤더 전체 영역
+   ========================================================================== */
+
+/* 로고, 메뉴, 검색창을 감싸는 헤더의 최대 작업 너비입니다. */
+.main-header {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0;
+    border-bottom: 2px solid #eee;
+}
+
+
+/* ==========================================================================
+   2-1. 상단 로고 영역
+   ========================================================================== */
+
+/* 로고 묶음을 왼쪽에 배치하고 작업영역의 아래쪽 기준으로 정렬합니다. */
+/* .header-top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    width: 100%;
+    min-height: 100px;
+    margin-bottom: 30px;
+} */
+
+.header-top {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+}
+
+/* 로고 이미지와 사이트명을 하나의 브랜드 묶음으로 배치합니다. */
+/* .brand-box {
+    display: flex;
+    align-items: flex-end;
+    width: fit-content;
+    min-width: 0;
+    gap: 24px;
+    color: inherit;
+    text-decoration: none;
+} */
+
+.brand-box {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+    color: inherit;
+}
+
+.brand-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #5d3a2d;
+    align-items: flex-end;
+}
+
+.site-logo {
+    width: 100px;
+    height: auto;
+}
+
+
+/* 로고 이미지를 90px 정사각형 작업영역 안에 맞춥니다. */
+/* .header-top img,
+/* .site-logo {
+    display: block;
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    flex-shrink: 0;
+    margin-top: 20px;
+} */
+*/
+
+/* 사이트 제목의 기본 여백을 제거하고 로고 아래선에 맞춥니다. */
+.header-top h1,
+.brand-title {
+    margin: 0 0 2px;
+    color: #5d3a2d;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -1px;
+    white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   2-2. 하단 네비게이션 영역
+   ========================================================================== */
+
+/* 메뉴 영역을 한 줄로 배치하고 아래쪽에 구분선을 표시합니다. */
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 네비게이션이 헤더 너비 전체를 사용하도록 설정합니다. */
+#gnb {
+    width: 100%;
+}
+
+/* 메뉴 항목을 가로로 나열합니다. */
+#gnb ul {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 40px;
+}
+
+/* 각 메뉴 링크의 기본 모양을 설정합니다. */
+#gnb a {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+    color: #333;
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+/* 메뉴 아래에 나타날 호버 밑줄의 초기 상태입니다. */
+#gnb li:not(.logo-li) a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #8a8aff;
+    transition: width 0.4s ease;
+}
+
+/* 메뉴에 마우스를 올리면 밑줄이 왼쪽에서 오른쪽으로 펼쳐집니다. */
+#gnb li:not(.logo-li) a:hover::after {
+    width: 100%;
+}
+
+/* 로그인 메뉴를 오른쪽 끝으로 밀어냅니다. */
+.login-item {
+    margin-left: auto;
+}
+
+
+/* ==========================================================================
+   2-3. 검색창 영역
+   ========================================================================== */
+
+/* 검색창을 헤더 가운데에 배치합니다. */
+.header-search-area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+/* 검색 입력창과 버튼을 감싸는 둥근 검색 박스입니다. */
+.search-m {
+    display: flex;
+    align-items: center;
+    width: min(600px, 100%);
+    height: 60px;
+    padding: 8px 20px;
+    border: 2px solid #c7c4be;
+    border-radius: 30px;
+    background-color: #FEFAF5;
+}
+
+/* 검색어 입력 영역이 남은 공간을 모두 사용하도록 설정합니다. */
+.searchInput {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 22px;
+}
+
+/* 검색 버튼의 기본 테두리와 배경을 제거합니다. */
+.searchBtn {
+    flex-shrink: 0;
+    border: none;
+    background: none;
+    color: #9CA172;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+#main-visual-section {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    grid-template-rows: 320px 54px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    overflow: hidden;
+    border: 1px solid #eae6df;
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+
+/* ==========================================================================
+   3-1. 왼쪽 카테고리 영역
+   ========================================================================== */
+
+/* 카테고리는 첫 번째 열에서 슬라이드와 탭 높이를 모두 차지합니다. */
+
+
+.sidebar-category {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border-right: 1px solid #eae6df;
+    background-color: #f0f5ee;
+}
+
+/* 카테고리 목록을 세로 방향으로 배치합니다. */
+.sidebar-category ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 25px 0;
+    gap: 0;
+}
+
+/* 각 목록 항목이 사이드바 전체 너비를 사용하도록 설정합니다. */
+.sidebar-category ul li {
+    width: 100%;
+}
+
+/* 메뉴 링크 내부에 여백을 주어 클릭 영역을 넓힙니다. */
+.sidebar-category ul li a {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    color: #555f5a;
+    font-size: 14px;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* 첫 번째 메뉴인 분야찾기 제목을 강조합니다. */
+.sidebar-category ul li:first-child a {
+    margin-bottom: 5px;
+    color: #4a2f8b;
+    font-weight: 700;
+}
+
+/* 카테고리에 마우스를 올리면 배경과 글자색이 바뀝니다. */
+.sidebar-category ul li a:hover {
+    background-color: #DFE7DC;
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* ==========================================================================
+   3-2. 오른쪽 Swiper 슬라이드 영역
+   ========================================================================== */
+
+/* 슬라이드를 두 번째 열의 첫 번째 행에 배치합니다. */
+.hero-swiper-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    height: 320px;
+    overflow: hidden;
+    background-color: #fffde7;
+}
+
+/* Swiper 바깥 컨테이너가 부모 영역 전체를 사용하도록 합니다. */
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+/* Swiper 내부 슬라이드 묶음의 높이를 부모와 동일하게 설정합니다. */
+.swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+/* 각 슬라이드의 내용물을 중앙에 정렬합니다. */
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: transparent;
+    color: #5d3a2d;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* 슬라이드 이미지가 작업영역 전체를 채우도록 합니다. */
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* 이전·다음 화살표를 브랜드 갈색으로 표시하고 크기를 줄입니다. */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #5d3a2d !important;
+    transform: scale(0.7);
+}
+
+/* 현재 활성화된 페이지 점을 브랜드 갈색으로 표시합니다. */
+.swiper-pagination-bullet-active {
+    background-color: #5d3a2d !important;
+}
+
+
+/* ==========================================================================
+   3-3. 슬라이드 하단 이벤트 탭
+   ========================================================================== */
+
+/* 이벤트 탭을 슬라이드 바로 아래에 한 줄로 배치합니다. */
+.event-tabs-wrapper {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    height: 54px;
+    border-top: 1px solid #c9c9c9;
+    background-color: #d1d1d1;
+}
+
+/* 각 탭이 동일한 너비를 갖도록 설정합니다. */
+.event-tabs-wrapper .tab {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    min-width: 0;
+    padding: 10px;
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+/* 탭에 마우스를 올렸을 때 배경과 글자색을 변경합니다. */
+.event-tabs-wrapper .tab:hover {
+    background-color: #e5e3db;
+    color: #5d3a2d;
+}
+
+/* JavaScript로 active 클래스가 붙은 탭을 강조합니다. */
+.event-tabs-wrapper .tab.active {
+    background-color: #fff;
+    color: #5d3a2d;
+    font-weight: 700;
+}
+
+
+/* ==========================================================================
+   4. 메인 본문 레이아웃
+   ========================================================================== */
+
+/* 메인 본문의 최대 작업 너비와 위쪽 구분선을 설정합니다. */
+.main-body-container {
+    clear: both;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+    padding-top: 20px;
+    border-top: 2px solid #eee;
+    background-color: #FEFAF5;
+}
+
+/* 타이틀 정렬 */
+.main-body-container h3 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* 본문을 추천 도서 영역과 보조 영역의 2단 구조로 나눕니다. */
+.book-grid {
+    display: block;
+    background-color: #FEFAF5;
+    grid-template-columns: minmax(0, 3fr) minmax(240px, 1fr);
+    gap: 30px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 각 본문 영역의 공통 내부 여백과 배경색입니다. */
+.book-list-area,
+.publisher-pick-area,
+.event-banner-area {
+    min-width: 0;
+    padding: 20px;
+    background-color: #FEFAF5;
+}
+
+
+/* ==========================================================================
+   5. 추천 도서 목록
+   ========================================================================== */
+
+/* JavaScript로 생성되는 도서를 3열 Grid로 배치합니다. */
+#booklist {
+    display: flex;
+    /* Swiper의 필수 설정입니다 */
+    padding: 0;
+    border: none;
+    gap: 0;
+    /* 간격은 JS에서 설정하므로 여기서는 없앱니다 */
+}
+
+/* 도서가 하나도 없을 때 빈 목록 영역을 숨깁니다. */
+#booklist:empty {
+    display: none;
+}
+
+
+/* ==========================================================================
+   5-1. 개별 도서 카드
+   ========================================================================== */
+
+/* 개별 도서 카드를 흰색 박스 형태로 표시합니다. */
+.book-card {
+    background: #fcf9f2;
+
+    padding: 24px;
+    border: 1px solid #eae6df;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    /* Swiper가 가장 긴 책에 맞춰서 높이를 자동으로 다 똑같이 맞춰줍니다 */
+    box-sizing: border-box;
+}
+
+/* 카드에 마우스를 올리면 위로 살짝 떠오릅니다. */
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* 1. 슬라이드 전체를 감싸는 박스 */
+.recommend-box {
+    width: 100%;
+    padding: 20 0px;
+    /* 배경을 투명하게 만들어 사이트 전체 배경색이 보이게 합니다 */
+    background-color: transparent !important;
+    border: none !important;
+    /* 필요하다면 테두리도 삭제 */
+    border-radius: 12px;
+    box-sizing: border-box;
+    overflow: hidden;
+    box-shadow: none !important;
+}
+
+/* 책 표지의 크기를 통일하고 원본 비율을 유지합니다. */
+.book-thumbnail {
+    width: 100%;
+    height: 260px;
+    /* 4개씩 볼 때는 사진이 조금 더 커도 비율이 예쁩니다 */
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.book-card .book-thumbnail {
+    display: block;
+    width: 100%;
+    height: 180px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    object-fit: contain;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease;
+}
+
+/* 카드 호버 시 책 표지도 살짝 확대합니다. */
+.book-card:hover .book-thumbnail {
+    transform: scale(1.03);
+}
+
+/* 책 제목은 최대 두 줄까지만 표시합니다. */
+.book-title,
+.book-card .book-title {
+    display: -webkit-box;
+    height: 2.8em;
+    margin-bottom: 8px;
+    overflow: hidden;
+    color: #333231;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+/* 저자명이 길어지면 한 줄 말줄임표로 처리합니다. */
+.book-authors,
+.book-card .book-authors {
+    margin: 4px 0 8px;
+    overflow: hidden;
+    color: #88837e;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 5. 가격표를 항상 바닥에 가지런히 정렬 */
+.book-price {
+    color: #5d3a2d;
+    font-weight: 800;
+    font-size: 16px;
+    margin-top: auto;
+    /* 제목 길이에 상관없이 가격을 맨 밑으로 밀어냅니다 */
+}
+
+/* 2. 파란색 카테고리/서브타이틀 (새로 추가됨) */
+.book-category {
+    color: #4c6ef5;
+    font-size: 15px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+
+/* 3. 책 제목 */
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.4;
+
+    /* 제목이 두 줄을 넘어가면 ... 으로 표시 */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+/* 4. 저자 및 출판사 */
+.book-authors {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+
+    /* 글자가 영역을 넘어가면 ... 으로 표시 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* 5. 가격 */
+.book-price {
+    color: #333;
+    font-weight: 800;
+    font-size: 16px;
+}
+
+/* 각 도서 카드 스타일 (자바스크립트로 생성되는 요소들에 적용) */
+.book-item {
+    background: #ffffff;
+    border: 1px solid #eee;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.book-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   6. 하단 특별 이벤트 영역
+   ========================================================================== */
+
+/* 하단 이벤트를 좌우 1:1 비율의 2단 Grid로 배치합니다. */
+.bottom-event-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto 60px;
+    gap: 30px;
+}
+
+
+/* ==========================================================================
+   6-1. 왼쪽 메인 배너
+   ========================================================================== */
+
+/* 메인 배너의 높이를 고정하고 넘치는 이미지를 숨깁니다. */
+.main-banner {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+    /* 커졌을 때 밖으로 튀어나가지 않게 감싸줍니다 */
+    cursor: pointer;
+    /* 마우스를 올리면 손가락 모양으로 변경 */
+}
+
+/* 배너 이미지가 지정된 영역 전체를 채우도록 설정합니다. */
+.main-banner img {
+    display: block;
+    width: 200%;
+    height: 200%;
+    object-fit: cover;
+    transition: transform 0.5s ease; /* 0.5초 동안 부드럽게 움직이게 설정 */
+}
+.main-banner:hover img {
+    transform: scale(1.05); /* 이미지를 1.05배로 살짝 확대 */
+}
+
+/* ==========================================================================
+   6-2. 오른쪽 이벤트 카드
+   ========================================================================== */
+
+/* 이벤트 카드들을 세로로 차곡차곡 배치합니다. */
+.item-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0;
+    gap: 15px;
+}
+
+/* 개별 이벤트 카드를 가로형 카드로 표시합니다. */
+.item-card {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    padding: 20px 25px;
+    border: 1px solid #eae6df;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* 이벤트 카드의 원형 이미지를 고정 크기로 표시합니다. */
+.circle-img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* 텍스트가 카드 너비를 넘어가지 않도록 제한합니다. */
+.item-card .text-content {
+    min-width: 0;
+}
+
+/* 이벤트 카드 제목입니다. */
+.item-card .text-content .title {
+    margin-bottom: 6px;
+    color: #5d3a2d;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* 이벤트 카드 설명 문구입니다. */
+.item-card .text-content .desc {
+    color: #666;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* ==========================================================================
+   7. 랜덤 도서 영역
+   ========================================================================== */
+
+/* 랜덤 추천 도서를 3열로 배치합니다. */
+.random-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin: 40px 0;
+}
+
+/* 랜덤 도서 카드가 나타날 때 페이드인 애니메이션을 적용합니다. */
+.random-book-card {
+    cursor: pointer;
+    animation: fadeIn 1s ease-in-out;
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+/* 랜덤 도서 카드에 마우스를 올리면 위로 이동합니다. */
+.random-book-card:hover {
+    transform: translateY(-10px);
+}
+
+/* 랜덤 도서 카드가 서서히 나타나는 애니메이션입니다. */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ==========================================================================
+   8. 푸터
+   ========================================================================== */
+
+/*
+   body에 좌우 20px padding이 있으므로,
+   footer는 그 여백을 다시 확장해 화면 폭 전체를 사용합니다.
+*/
+footer {
+    width: calc(100% + 40px);
+    margin: 80px 0 0 -20px;
+    padding: 40px 0;
+    border-top: 1px solid #eae6df;
+    background-color: #f0ede7;
+}
+
+/* 푸터 정보는 최대 1200px 작업영역 안에 정렬합니다. */
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 10px 24px;
+}
+
+/* 푸터 정보의 기본 글자 스타일입니다. */
+footer ul li {
+    color: #88837e;
+    font-size: 13px;
+}
+
+/* 마지막 카피라이트 문구를 새 줄 전체에 표시합니다. */
+footer ul li:last-child {
+    width: 100%;
+    margin-top: 10px;
+    color: #b5b1ab;
+}
+
+
+/* ==========================================================================
+   9. 태블릿 반응형
+   화면 너비가 1024px 이하일 때 적용됩니다.
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+
+    /* 네비게이션 메뉴 간격과 글자 크기를 줄입니다. */
+    #gnb ul {
+        gap: 24px;
+    }
+
+    #gnb a {
+        font-size: 18px;
+    }
+
+    /* 카테고리 너비를 190px로 줄입니다. */
+    #main-visual-section {
+        grid-template-columns: 190px minmax(0, 1fr);
+    }
+
+    /* 본문 오른쪽 보조 영역의 최소 너비를 줄입니다. */
+    .book-grid {
+        background-color: #fcfcfc;
+        /* 하얀색 대신 약간의 미색(off-white) 추천 */
+        padding: 40px 20px;
+        margin-top: 20px;
+        border-radius: 15px;
+        /* 모서리를 둥글게 하면 더 세련되어 보입니다 */
+    }
+
+    /* 추천 도서 목록을 2열로 변경합니다. */
+    #booklist {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+/* ==========================================================================
+   10. 모바일 반응형
+   화면 너비가 768px 이하일 때 적용됩니다.
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    /* 모바일 화면의 좌우 기본 여백을 16px로 줄입니다. */
+    body {
+        padding: 16px;
+    }
+
+    /* 헤더의 위아래 여백을 줄입니다. */
+    .main-header {
+        padding: 20px 0;
+    }
+
+    /* 로고 영역의 고정 최소 높이를 해제합니다. */
+    .header-top {
+        min-height: auto;
+    }
+
+    /* 로고와 제목 사이 간격을 줄입니다. */
+    .brand-box {
+        gap: 16px;
+    }
+
+    /* 모바일 로고 크기를 줄입니다. */
+    .header-top img,
+    .site-logo {
+        width: 100px;
+        height: auto;
+    }
+
+    /* 모바일 제목 글자 크기를 줄입니다. */
+    .header-top h1,
+    .brand-title {
+        margin-bottom: 2px;
+        font-size: 25px;
+        letter-spacing: -0.8px;
+    }
+
+    /* 메뉴가 길어질 경우 가로 스크롤이 가능하도록 합니다. */
+    .header-bottom {
+        overflow-x: auto;
+    }
+
+    #gnb ul {
+        width: max-content;
+        min-width: 100%;
+        gap: 22px;
+    }
+
+    #gnb a {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    /* 모바일 검색창 높이와 글자 크기를 줄입니다. */
+    .search-m {
+        height: 52px;
+    }
+
+    .searchInput,
+    .searchBtn {
+        font-size: 18px;
+    }
+
+    /*
+       메인 비주얼을 세로형 구조로 변경합니다.
+       카테고리 → 슬라이드 → 탭 순서로 표시됩니다.
+    */
+    #main-visual-section {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 280px auto;
+        border-radius: 8px;
+    }
+
+    /* 카테고리를 첫 번째 행에 배치합니다. */
+    .sidebar-category {
+        grid-column: 1;
+        grid-row: 1;
+        border-right: 0;
+        border-bottom: 1px solid #eae6df;
+    }
+
+    /* 모바일에서는 카테고리 항목을 2열로 배치합니다. */
+    .sidebar-category ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 12px 0;
+    }
+
+    /* 슬라이드를 두 번째 행에 배치합니다. */
+    .hero-swiper-wrapper {
+        grid-column: 1;
+        grid-row: 2;
+        height: 280px;
+    }
+
+    /* 이벤트 탭을 세 번째 행에 배치합니다. */
+    .event-tabs-wrapper {
+        grid-column: 1;
+        grid-row: 3;
+        height: auto;
+        flex-wrap: wrap;
+    }
+
+    /* 탭을 한 줄에 두 개씩 표시합니다. */
+    .event-tabs-wrapper .tab {
+        flex: 1 1 50%;
+        min-height: 48px;
+    }
+
+    /* 본문을 한 열 구조로 변경합니다. */
+    .book-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 추천 도서 목록은 모바일에서 2열로 표시합니다. */
+    #booklist {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 16px;
+    }
+
+    /* 하단 이벤트 영역을 한 열 구조로 변경합니다. */
+    .bottom-event-section {
+        grid-template-columns: 1fr;
+    }
+
+    /* 랜덤 도서도 2열로 표시합니다. */
+    .random-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* body padding 변경에 맞춰 푸터 너비를 다시 계산합니다. */
+    footer {
+        width: calc(100% + 32px);
+        margin-left: -16px;
+    }
+}
+
+
+/* ==========================================================================
+   11. 소형 모바일 반응형
+   화면 너비가 480px 이하일 때 적용됩니다.
+   ========================================================================== */
+
+@media (max-width: 480px) {
+
+    /* 작은 화면에서는 로고와 제목을 세로 중앙 기준으로 맞춥니다. */
+    .brand-box {
+        align-items: center;
+        gap: 12px;
+    }
+
+    /* 로고 크기를 한 번 더 줄입니다. */
+    .header-top img,
+    .site-logo {
+        width: 58px;
+        height: 58px;
+    }
+
+    /* 제목이 좁은 화면에서 줄바꿈될 수 있도록 설정합니다. */
+    .header-top h1,
+    .brand-title {
+        margin-bottom: 0;
+        font-size: 20px;
+        white-space: normal;
+    }
+
+    /* 카테고리를 한 줄에 하나씩 표시합니다. */
+    .sidebar-category ul {
+        grid-template-columns: 1fr;
+    }
+
+    /* 추천 도서 목록을 한 열로 변경합니다. */
+    #booklist {
+        grid-template-columns: 1fr;
+    }
+
+    /* 랜덤 도서 목록도 한 열로 변경합니다. */
+    .random-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 이벤트 카드 내부 여백을 줄입니다. */
+    .item-card {
+        padding: 16px;
+    }
+
+    /* 이벤트 카드의 원형 이미지를 줄입니다. */
+    .circle-img {
+        width: 64px;
+        height: 64px;
+        margin-right: 14px;
+    }
+}
+
+/* ==========================================================================
+   캡슐형 이벤트 배지 (기존 스타일 충돌 방지용 강력 적용)
+   ========================================================================== */
+
+.momo-pill-wrapper {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* 캡슐 전체 틀 */
+.momo-pill-box {
+    display: flex !important;
+    align-items: center !important;
+    background-color: #ebebeb !important;
+    /* 강제 회색 배경 */
+    border-radius: 100px !important;
+    /* 강제 둥근 캡슐형 */
+    padding: 8px 24px 8px 8px !important;
+    width: 311px !important;
+    height: 117px !important;
+    box-sizing: border-box !important;
+    border: none !important;
+    /* 기존 테두리 강제 삭제 */
+    box-shadow: none !important;
+    /* 기존 그림자 강제 삭제 */
+    gap: 15px !important;
+}
+
+/* 왼쪽 동그라미 */
+.momo-pill-circle {
+    width: 100px !important;
+    height: 100px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+}
+
+/* 동그라미 안쪽 글씨 */
+.momo-pill-circle span {
+    color: #8cb8c9 !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+}
+
+/* 오른쪽 정보 영역 */
+.momo-pill-info {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    text-align: left !important;
+}
+
+/* 오른쪽 검은색 제목 */
+.momo-pill-info .pill-title {
+    color: #333333 !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* 오른쪽 핑크색 설명 */
+.momo-pill-info .pill-desc {
+    color: #f26b9c !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   모모슬 큐레이션 배너 (고정형 5구역)
+   ========================================================================== */
+
+.momo-curation-section {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+/* 상단 타이틀 영역 */
+.curation-header {
+    margin-bottom: 20px;
+}
+
+.curation-header h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.curation-header p {
+    font-size: 14px;
+    color: #888;
+    margin: 0;
+}
+
+/* 5개씩 나누는 그리드 설정 */
+.curation-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    /* 카드 사이 간격 */
+    width: 100%;
+}
+
+/* 개별 배너 카드 틀 */
+.curation-banner-card {
+    position: relative;
+    display: block;
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1.1;
+    /* 사진 비율 (정사각형보다 살짝 세로로 길게) */
+    text-decoration: none;
+}
+
+/* 배경 이미지 */
+.curation-banner-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    /* 마우스 오버 시 부드럽게 확대되는 애니메이션 시간 */
+}
+
+/* 마우스를 올리면 이미지만 살짝 커지는 효과 */
+.curation-banner-card:hover img {
+    transform: scale(1.06);
+}
+
+/* 텍스트 가독성을 높이는 하단 검은색 그라데이션 막 */
+.curation-text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* 아래쪽은 완전히 까맣고 위로 갈수록 투명해집니다 */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0) 100%);
+    padding: 40px 16px 20px 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* 위쪽 작은 카테고리 텍스트 (예: 올타임 레전드) */
+.curation-tag {
+    color: rgba(255, 255, 255, 0.8);
+    /* 살짝 투명한 흰색 */
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+/* 메인 제목 두 줄 */
+.curation-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    word-break: keep-all;
+    /* 단어 단위로 줄바꿈되어 깔끔하게 보입니다 */
+}
+
+/* 메인 최상단 배너 듀얼 구조 */
+.main-top-banner {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    height: 400px;
+    /* 전체 배너 높이 */
+    margin: 40px auto;
+}
+
+/* 왼쪽 메인 배너 스타일 */
+.main-banner-left {
+    flex: 2;
+    /* 2의 비율 */
+    background: #e6ddd4;
+    /* 따뜻한 베이지 배경 */
+    border-radius: 20px;
+    padding: 40px;
+    text-decoration: none;
+    color: #333;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 오른쪽 마음챙김 영역 스타일 */
+.healing-point-right {
+    flex: 1;
+    /* 1의 비율 */
+    background: #FBF3EA;
+    /* 조금 더 밝은 살구빛 */
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.healing-desc {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.daily-quote {
+    font-style: italic;
+    font-weight: bold;
+    color: #5d3824;
+}
+
+/* 텍스트 정렬 */
+.banner-title {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.banner-tag {
+    color: #888;
+    font-weight: bold;
+}
+
+.main-banner-left {
+    /* 여기에 이미지를 넣습니다 */
+    background-image: url('../img/main.png') !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}

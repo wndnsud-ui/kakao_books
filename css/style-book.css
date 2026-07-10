@@ -1,0 +1,110 @@
+/* 기본 스타일 초기화 및 레이아웃*/
+body {
+    font-family: 'Noto Sans KR' , sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 검색영역 스타일 */
+.search-container {
+    text-align:  center;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-container h1{
+    color: #333;
+    gap: 10px;
+}
+#search-box{
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#searchInput:focus{
+    border-color: #fee500; }
+    /* 카카오 시그니처 색상무드 */
+
+#searchBtn{
+    padding: 12px 24px;
+    background-color: #fee500;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #191919;
+    transition: background-color 0.35s;
+}
+
+#searchBtn:hover{
+    background-color: #fada0a;    
+}
+/* 도서목록 GRID레이아웃*/
+.book-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+/* 개별도서 카드스타일 */
+.book-card{
+    background-color:  #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #eee;
+    transition: transform  0.3s, box-shadow 0.3s;    
+}
+
+.book-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.book-thumbnail{
+    width: 120px;
+    height: 174px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 15px;
+    background-color: #eaeaea; 
+    /* 이미지 없을 때 대용 */
+}
+
+.book-title{
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+    margin: 10px 0 5px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 44px;
+}
+
+.book-authors {
+    font-size: 14px;
+    color: #666;
+    margin-bottom:8px;
+}
+
+.book-price{
+    font-size: 15px;
+    color: #e65100;
+    font-weight: bold;    
+}

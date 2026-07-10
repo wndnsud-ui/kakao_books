@@ -1,0 +1,497 @@
+/* ==========================================================================
+   1. 기본 초기화 및 공통 설정
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 20px;
+    background-color: #FEFAF5;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ==========================================================================
+   2. 헤더 스타일 (로고, 메뉴, 검색창)
+   ========================================================================== */
+.main-header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 0;
+    border-bottom: 2px solid #eee;
+}
+
+/* 상단 영역: 로고 */
+.header-top {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+}
+
+.brand-box {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+    color: inherit;
+}
+
+.brand-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #5d3a2d;
+}
+
+.site-logo {
+    width: 100px;
+    height: auto;
+}
+
+/* 하단 영역: 네비게이션 */
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#gnb ul {
+    display: flex;
+    gap: 40px;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    align-items: center;
+}
+
+#gnb a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 22px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* 메뉴 밑줄 효과 */
+#gnb li:not(.logo-li) a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #8a8aff;
+    transition: width 0.4s ease;
+}
+
+#gnb li:not(.logo-li) a:hover::after {
+    width: 100%;
+}
+
+.login-item {
+    margin-left: 370px;
+}
+
+/* 검색창 영역 */
+.header-search-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.search-m {
+    width: 600px;
+    height: 60px;
+    border: 2px solid #c7c4be;
+    border-radius: 30px;
+    padding: 8px 20px;
+    display: flex;
+    background-color: #FEFAF5;
+}
+
+.searchInput {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 22px;
+    background-color: transparent;
+}
+
+.searchBtn {
+    border: none;
+    background: none;
+    color: #757954;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 22px;
+}
+
+/* ==========================================================================
+   3. [본문 레이아웃] 상세 페이지 메인 구조
+   ========================================================================== */
+/* 메인 컨테이너 폭과 중앙 정렬 고정 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 전체 페이지 폭 제어 */
+.book-container {
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* 좌측(이미지) vs 우측(정보) 2단 구성 */
+.book-wrapper {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+/* 좌측 도서 표지 영역 (350px 고정) */
+.book-cover-section {
+    flex: 0 0 350px;
+}
+
+.book-cover-section img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 우측 상세 정보 영역 (유연하게 남은 공간 차지) */
+.book-info-section {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ==========================================================================
+   4. [상세 정보 스타일] 타이틀, 가격, 버튼 등
+   ========================================================================== */
+/* 제목 및 부제목 영역 */
+.title-container {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.book-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* 상세 정보 데이터 표 (Grid 활용) */
+.info-table {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+}
+/* 수량 조절 전체 감싸는 박스 */
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 버튼과 숫자 사이 간격 */
+}
+
+/* 플러스/마이너스 버튼 디자인 */
+.quantity-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* 동그란 버튼 */
+    border: 1px solid #dcdcdc;
+    background-color: #ffffff;
+    color: #5d3824; /* 모모슬의 차분한 갈색톤 */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.quantity-btn:hover {
+    background-color: #5d3824;
+    color: #ffffff;
+}
+
+/* 숫자 입력창 디자인 */
+.quantity-input {
+    width: 45px;
+    height: 32px;
+    text-align: center;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px; /* 살짝 둥근 모서리 */
+    font-size: 14px;
+    color: #333;
+}
+
+
+/* 최종 금액 강조 영역 */
+.total-price-section {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top: 2px solid #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+/* 구매 관련 버튼들 */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    flex: 1;
+    padding: 18px 0;
+    border: 1px solid #8f8787;
+    background: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+/* .btn-buy {
+    background-color: #FBCBB0;
+    border: 1px solid #FBCBB0;
+    color: white;
+} */
+
+/* 구매 버튼 강조 */
+.btn:hover {
+    background-color: #FAF9F5;
+    color: #4A5541;
+    font-size: large;
+}
+
+/* 버튼 마우스 호버 효과 */
+/* 장바구니/선물하기/보관함 (흰색 버튼 테두리) */
+.action-btn { /* 나머지 버튼들의 클래스 이름 */
+    background-color: transparent !important;
+    border: 1px solid #FBCBB0 !important;
+    color: #FBCBB0 !important;
+}
+
+.action-btn:hover {
+    background-color: #F9F5F0 !important;
+    border-color: #FBCBB0 !important;
+}
+
+/* 섹션 전체 레이아웃 */
+.product-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* 가로 중앙 정렬 핵심 */
+    width: 100%;
+    padding: 20px 0;
+    border-top: 1px solid #E5E0DA; /* 구분을 위한 연한 갈색 선 */
+    border-bottom: 1px solid #E5E0DA; /* 구분을 위한 연한 갈색 선 */
+}
+
+/* 제목이 왼쪽 정렬이 되길 원한다면, 제목에만 따로 왼쪽 정렬을 지정해 주세요 */
+.product-container .section-title {
+    width: 100%;            /* 제목은 전체 너비를 차지하게 하고 */
+    text-align: left;       /* 글자만 왼쪽으로 */
+}
+
+/* 제목 스타일 (올리브 포인트) */
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #4A5541; /* 다크 올리브 */
+    margin-bottom: 20px;
+}
+
+/* dl, dt, dd를 이용한 깔끔한 정보 리스트 */
+.info-list {
+    display: grid;
+    grid-template-columns: 100px 1fr; /* 제목은 100px, 내용은 나머지 */
+    gap: 15px;
+    font-size: 14px;
+    color: #5D4A41;
+}
+
+.info-list dt { font-weight: 600; color: #7A8B63; } /* 올리브 그린 제목 */
+
+/* 책소개 본문 스타일 */
+.intro-text {
+    line-height: 1.8; /* 읽기 편한 줄간격 */
+    font-size: 15px;
+    color: #5D4A41;
+}
+
+/* 이벤트 배너 영역 (사진 3개 나란히) */
+.event-list {
+    display: flex;
+    flex-wrap: wrap; /* 자리가 부족하면 아래로 줄바꿈 */
+    gap: 15px;
+    padding: 0;
+    margin: 0;
+}
+.event-list li {
+    /* calc를 사용하여 2개의 이미지가 15px 간격을 두고 정확히 50%씩 차지하게 합니다 */
+    width: calc(50% - 7.5px); 
+    box-sizing: border-box;
+}
+
+.event-list li a {
+    display: block;
+}
+
+.event-list img {
+    width: 100%;          /* li 너비 안에 꽉 차게 */
+    height: auto;         /* 비율 유지 */
+    display: block;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.event-list img:hover {
+    transform: scale(1.02);
+}
+
+/* 광고 영역(aside) 스타일 */
+.advertisement {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    
+    /* 1. 라인 설정 */
+    border-top: 1px solid #E5E0DA;
+    border-bottom: 1px solid #E5E0DA;
+    
+    /* 2. 광고가 라인에 딱 붙도록 여백 제거 */
+    margin: 0; 
+    padding: 0;
+    
+    transition: transform 0.3s ease;
+}
+/* 이미지 스타일 */
+.advertisement img {
+    display: block;
+    width: 100%;       /* 구역 너비에 꽉 채우기 */
+    height: 100%;      /* 구역 높이에 꽉 채우기 */
+    object-fit: cover; /* 이미지가 잘리지 않게 구역을 꽉 채움 */
+    margin: 0;
+    transition: transform 0.5s ease; /* 호버 시 이미지가 부드럽게 확대 */
+}
+
+/* 호버 효과: 영역이 살짝 떠오르면서 이미지가 확대됨 */
+.advertisement:hover {
+    transform: translateY(-5px); /* 영역이 살짝 위로 떠오름 */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* 그림자 추가 */
+}
+
+.advertisement:hover img {
+    transform: scale(1.05); /* 마우스 올리면 이미지 살짝 확대 */
+}
+
+/* 2. figure 안의 이미지도 반응형으로 조절 */
+.product-container figure {
+    margin: 0;
+    width: 80%;              /* 이미지 영역의 최대 너비 설정 */
+    max-width: 800px;        /* 너무 커지지 않게 제한 */
+    text-align: center;
+}
+
+.product-container img {
+    width: 100%;             /* 부모인 figure 너비에 꽉 차게 */
+    height: auto;            /* 비율 유지 */
+    display: block;
+}
+
+/* 이벤트 섹션 전체 여백 */
+.event-section {
+    display: flex;
+    flex-direction: column; /* 세로로 쌓기 */
+    gap: 20px; /* 제목과 이벤트 리스트 사이 간격 */
+}
+
+/* '이벤트' 제목 박스 스타일 (왼쪽 정렬) */
+.event-title-wrapper {
+    text-align: left; /* 모모슬 스타일대로 왼쪽 정렬 유지 */
+    width: 100%;
+}
+
+/* 기존 h2 스타일은 유지하되, 섹션 전용 마진을 초기화 */
+.event-section .section-title {
+    margin: 0;
+}
+
+/* 이벤트 배너 2개씩 정렬 (이전 답변 CSS 재사용) */
+.event-list.two-per-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.event-list.two-per-row li {
+    width: calc(50% - 7.5px);
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   8. 푸터
+   ========================================================================== */
+
+/*
+   body에 좌우 20px padding이 있으므로,
+   footer는 그 여백을 다시 확장해 화면 폭 전체를 사용합니다.
+*/
+footer {
+    width: calc(100% + 40px);
+    margin: 80px 0 0 -20px;
+    padding: 40px 0;
+    border-top: 1px solid #eae6df;
+    background-color: #f0ede7;
+}
+
+/* 푸터 정보는 최대 1200px 작업영역 안에 정렬합니다. */
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 10px 24px;
+}
+
+/* 푸터 정보의 기본 글자 스타일입니다. */
+footer ul li {
+    color: #88837e;
+    font-size: 13px;
+}
+
+/* 마지막 카피라이트 문구를 새 줄 전체에 표시합니다. */
+footer ul li:last-child {
+    width: 100%;
+    margin-top: 10px;
+    color: #b5b1ab;
+}
+

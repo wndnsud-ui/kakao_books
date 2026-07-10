@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과 - 모모슬</title> 
+    <link rel="stylesheet" href="./css/main1.css"> 
+</head>
+
+<body>
+<header class="main-header">
+    <div class="header-top">
+        <a href="index.html" class="brand-box">
+            <img src="/img/logo-image.png" alt="로고" class="site-logo">
+            <h1 class="brand-title">모모슬의 느린책방</h1>
+        </a>
+    </div>
+    <div class="header-bottom">
+        <nav id="gnb">
+            <ul>
+                </li>
+                <li><a href="#">모모슬 추천</a></li>
+                <li><a href="#">화제의 도서</a></li>
+                <li><a href="#">반드시 봐야할 지식서적</a></li>
+                <li><a href="#">오늘의 한문장</a></li>                
+                <li class="login-item"><a href="#">로그인</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="header-search-area">
+        <div class="search-m">
+            <input type="text" id="searchInput" class="searchInput" placeholder="오늘은 어떤 문장을 만나고 싶으세요?" onkeypress="if(event.key === 'Enter') searchBooks()">
+            <button class="searchBtn" onclick="searchBooks()">검색</button>
+        </div>
+   </div>
+    </header>
+
+    <main class="main-content" style="max-width: 1200px; margin: 0 auto;">
+        <h2 id="resultTitle" style="text-align: center; margin: 40px 0;">검색 결과를 불러오는 중...</h2>
+        <div id="booklist" class="book-grid"></div>
+    </main>
+
+    <script src="./js/main1.js"></script>
+    <script>
+        // 페이지가 로드되면 URL에서 검색어를 추출하여 바로 검색 실행
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('query');
+            
+            if (query) {
+                document.getElementById('resultTitle').textContent = `'${query}'에 대한 검색 결과`;
+                // 기존의 검색 함수 호출 (main1.js에 있는 함수를 그대로 사용)
+                fetchBooksFromURL(query); 
+            }
+        });
+    </script>
+</body>
+    <footer>
+        <ul>
+            <li>모모슬(more more slowly) | 대표이사 최은영 | 사업자등록 201-##-####</li>
+            <li>이메일 privacy@aladin.co.kr | 호스팅 제공자 모모슬 | 서울시 노원구 초안산로 1길</li>
+            <li>ⓒ more more slowly. All Rights Reserved.</li>
+        </ul>
+    </footer>
+</body>
+
+</html>
+</html>

@@ -204,21 +204,25 @@ ul {
     padding: 20px 0;
     border-top: 1px solid #eee;
 }
+
 /* 수량 조절 전체 감싸는 박스 */
 .quantity-wrapper {
     display: flex;
     align-items: center;
-    gap: 8px; /* 버튼과 숫자 사이 간격 */
+    gap: 8px;
+    /* 버튼과 숫자 사이 간격 */
 }
 
 /* 플러스/마이너스 버튼 디자인 */
 .quantity-btn {
     width: 32px;
     height: 32px;
-    border-radius: 50%; /* 동그란 버튼 */
+    border-radius: 50%;
+    /* 동그란 버튼 */
     border: 1px solid #dcdcdc;
     background-color: #ffffff;
-    color: #5d3824; /* 모모슬의 차분한 갈색톤 */
+    color: #5d3824;
+    /* 모모슬의 차분한 갈색톤 */
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
@@ -239,7 +243,8 @@ ul {
     height: 32px;
     text-align: center;
     border: 1px solid #dcdcdc;
-    border-radius: 8px; /* 살짝 둥근 모서리 */
+    border-radius: 8px;
+    /* 살짝 둥근 모서리 */
     font-size: 14px;
     color: #333;
 }
@@ -287,7 +292,8 @@ ul {
 
 /* 버튼 마우스 호버 효과 */
 /* 장바구니/선물하기/보관함 (흰색 버튼 테두리) */
-.action-btn { /* 나머지 버튼들의 클래스 이름 */
+.action-btn {
+    /* 나머지 버튼들의 클래스 이름 */
     background-color: transparent !important;
     border: 1px solid #FBCBB0 !important;
     color: #FBCBB0 !important;
@@ -303,56 +309,102 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* 가로 중앙 정렬 핵심 */
+    justify-content: center;
+    /* 가로 중앙 정렬 핵심 */
     width: 100%;
     padding: 20px 0;
-    border-top: 1px solid #E5E0DA; /* 구분을 위한 연한 갈색 선 */
-    border-bottom: 1px solid #E5E0DA; /* 구분을 위한 연한 갈색 선 */
+    border-top: 1px solid #E5E0DA;
+    /* 구분을 위한 연한 갈색 선 */
+    border-bottom: 1px solid #E5E0DA;
+    /* 구분을 위한 연한 갈색 선 */
 }
 
 /* 제목이 왼쪽 정렬이 되길 원한다면, 제목에만 따로 왼쪽 정렬을 지정해 주세요 */
 .product-container .section-title {
-    width: 100%;            /* 제목은 전체 너비를 차지하게 하고 */
-    text-align: left;       /* 글자만 왼쪽으로 */
+    width: 100%;
+    /* 제목은 전체 너비를 차지하게 하고 */
+    text-align: left;
+    /* 글자만 왼쪽으로 */
 }
 
 /* 제목 스타일 (올리브 포인트) */
 .section-title {
     font-size: 20px;
     font-weight: 700;
-    color: #4A5541; /* 다크 올리브 */
+    color: #4A5541;
+    /* 다크 올리브 */
     margin-bottom: 20px;
 }
 
 /* dl, dt, dd를 이용한 깔끔한 정보 리스트 */
+.info-section {
+    display: flex;
+    flex-direction: row;      /* 가로 배치 */
+    align-items: flex-start;  /* 위쪽 선에 맞춤 */
+    width: 100%;
+    padding: 30px 0;          /* 위아래 여백 */
+    border-bottom: 1px solid #eae6df; /* 구역 구분을 위한 아래쪽 연한 선 (선택사항) */
+}
+
+/* 2. 왼쪽 '기본정보' 제목 공간 고정 */
+.info-section .section-title {
+    width: 150px;             /* 제목이 차지할 너비 고정 */
+    flex-shrink: 0;           /* 화면이 좁아져도 제목 공간은 안 줄어들게 방지 */
+    margin: 0;
+    text-align: left;
+}
+
 .info-list {
+    flex: 1;
     display: grid;
-    grid-template-columns: 100px 1fr; /* 제목은 100px, 내용은 나머지 */
-    gap: 15px;
+    grid-template-columns: 120px 1fr;
+    /* 제목은 100px, 내용은 나머지 */
+    row-gap: 16px;
+    margin: 10px 0 0 0;
     font-size: 14px;
+    padding: 0;
     color: #5D4A41;
 }
 
-.info-list dt { font-weight: 600; color: #7A8B63; } /* 올리브 그린 제목 */
+.info-list dt {
+    color: #7A8B63;
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+}
+
+/* 올리브 그린 제목 */
+
+.info-list dd {
+    color: #333;
+    /* 내용은 잘 보이도록 진한 색 */
+    text-align: left;
+    margin: 0;
+    /* 기본 여백 제거 */
+}
 
 /* 책소개 본문 스타일 */
 .intro-text {
-    line-height: 1.8; /* 읽기 편한 줄간격 */
+    line-height: 1.8;
+    /* 읽기 편한 줄간격 */
     font-size: 15px;
     color: #5D4A41;
+    margin: 0;
 }
 
 /* 이벤트 배너 영역 (사진 3개 나란히) */
 .event-list {
     display: flex;
-    flex-wrap: wrap; /* 자리가 부족하면 아래로 줄바꿈 */
+    flex-wrap: wrap;
+    /* 자리가 부족하면 아래로 줄바꿈 */
     gap: 15px;
     padding: 0;
     margin: 0;
 }
+
 .event-list li {
     /* calc를 사용하여 2개의 이미지가 15px 간격을 두고 정확히 50%씩 차지하게 합니다 */
-    width: calc(50% - 7.5px); 
+    width: calc(50% - 7.5px);
     box-sizing: border-box;
 }
 
@@ -361,8 +413,10 @@ ul {
 }
 
 .event-list img {
-    width: 100%;          /* li 너비 안에 꽉 차게 */
-    height: auto;         /* 비율 유지 */
+    width: 100%;
+    /* li 너비 안에 꽉 차게 */
+    height: auto;
+    /* 비율 유지 */
     display: block;
     border-radius: 8px;
     transition: transform 0.3s ease;
@@ -377,61 +431,76 @@ ul {
     width: 100%;
     overflow: hidden;
     border-radius: 15px;
-    
+
     /* 1. 라인 설정 */
     border-top: 1px solid #E5E0DA;
     border-bottom: 1px solid #E5E0DA;
-    
+
     /* 2. 광고가 라인에 딱 붙도록 여백 제거 */
-    margin: 0; 
+    margin: 0;
     padding: 0;
-    
+
     transition: transform 0.3s ease;
 }
+
 /* 이미지 스타일 */
 .advertisement img {
     display: block;
-    width: 100%;       /* 구역 너비에 꽉 채우기 */
-    height: 100%;      /* 구역 높이에 꽉 채우기 */
-    object-fit: cover; /* 이미지가 잘리지 않게 구역을 꽉 채움 */
+    width: 100%;
+    /* 구역 너비에 꽉 채우기 */
+    height: 100%;
+    /* 구역 높이에 꽉 채우기 */
+    object-fit: cover;
+    /* 이미지가 잘리지 않게 구역을 꽉 채움 */
     margin: 0;
-    transition: transform 0.5s ease; /* 호버 시 이미지가 부드럽게 확대 */
+    transition: transform 0.5s ease;
+    /* 호버 시 이미지가 부드럽게 확대 */
 }
 
 /* 호버 효과: 영역이 살짝 떠오르면서 이미지가 확대됨 */
 .advertisement:hover {
-    transform: translateY(-5px); /* 영역이 살짝 위로 떠오름 */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* 그림자 추가 */
+    transform: translateY(-5px);
+    /* 영역이 살짝 위로 떠오름 */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    /* 그림자 추가 */
 }
 
 .advertisement:hover img {
-    transform: scale(1.05); /* 마우스 올리면 이미지 살짝 확대 */
+    transform: scale(1.05);
+    /* 마우스 올리면 이미지 살짝 확대 */
 }
 
 /* 2. figure 안의 이미지도 반응형으로 조절 */
 .product-container figure {
     margin: 0;
-    width: 80%;              /* 이미지 영역의 최대 너비 설정 */
-    max-width: 800px;        /* 너무 커지지 않게 제한 */
+    width: 80%;
+    /* 이미지 영역의 최대 너비 설정 */
+    max-width: 800px;
+    /* 너무 커지지 않게 제한 */
     text-align: center;
 }
 
 .product-container img {
-    width: 100%;             /* 부모인 figure 너비에 꽉 차게 */
-    height: auto;            /* 비율 유지 */
+    width: 100%;
+    /* 부모인 figure 너비에 꽉 차게 */
+    height: auto;
+    /* 비율 유지 */
     display: block;
 }
 
 /* 이벤트 섹션 전체 여백 */
 .event-section {
     display: flex;
-    flex-direction: column; /* 세로로 쌓기 */
-    gap: 20px; /* 제목과 이벤트 리스트 사이 간격 */
+    flex-direction: column;
+    /* 세로로 쌓기 */
+    gap: 20px;
+    /* 제목과 이벤트 리스트 사이 간격 */
 }
 
 /* '이벤트' 제목 박스 스타일 (왼쪽 정렬) */
 .event-title-wrapper {
-    text-align: left; /* 모모슬 스타일대로 왼쪽 정렬 유지 */
+    text-align: left;
+    /* 모모슬 스타일대로 왼쪽 정렬 유지 */
     width: 100%;
 }
 
@@ -494,4 +563,26 @@ footer ul li:last-child {
     margin-top: 10px;
     color: #b5b1ab;
 }
+/* ==========================================================================
+   상세페이지 공통 투콜럼 레이아웃 (기본정보, 책소개 등)
+   ========================================================================== */
 
+/* 1. 구역 전체 가로 배치 */
+.detail-row {
+    display: flex;
+    flex-direction: row;      
+    align-items: flex-start;  
+    width: 100%;
+    padding: 40px 0;          
+    border-bottom: 1px solid #eae6df; 
+}
+
+/* 2. 왼쪽 제목: 공간 고정 (여기가 빨간 기준선이 됩니다) */
+.detail-row .section-title {
+    width: 150px;             /* 이 수치를 조절해 기준선 위치를 변경하세요 */
+    flex-shrink: 0;
+    margin: 0;
+    text-align: left;
+    font-size: 20px;
+    color: #333;
+}
